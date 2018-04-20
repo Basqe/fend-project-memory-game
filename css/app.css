@@ -1,109 +1,335 @@
+/* body */
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(77,203,197,1);
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+  font: 300 16px "Open Sans", sans-serif;
 }
 
+/* container */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* header */
+header {
+  text-align: center;
+  visibility: visible;
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+  padding: 0;
+  margin: 0;
+  color: #0c385c;
+  margin-top: 20px;
 }
 
-/*
- * Styles for the deck of cards
- */
+.info {
+  color: #444;
+  font-size: 1em;
+  font-weight: normal;
+  margin-top: 10px;
+}
 
+/* deck of cards */
 .deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 3em;
+  width: 660px;
+  min-height: 680px;
+  background: linear-gradient(140deg, #17f266 10%, #09afbc 85%);
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 3em;
+  position: relative;
 }
 
-.deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+.card {
+  height: 125px;
+  width: 125px;
+  font-size: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  position: relative;
 }
 
-.deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
+/* element which is lid for card element */
+.lid {
+  height: 100%;
+  width: 100%;
+  background: #2e3d49;
+  font-size: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border: 1px solid #fff;
 }
 
-.deck .card.show {
-    font-size: 33px;
+/* class for element with class name lid when cards are matched */
+.open {
+  visibility: hidden;
 }
 
-.deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
+/* class for matched cards */
+.matched {
+  transform: rotate(0);
+  -webkit-transform: rotate(0); /* for Safari */
+  transition: 1s ease all;
+  -webkit-transition: 1s ease all; /* for Safari */
 }
 
-/*
- * Styles for the Score Panel
- */
-
+/* scores panel */
 .score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+  text-align: left;
+  width: 345px;
+  margin-bottom: 10px;
+  font-size: 1em;
 }
 
-.score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+/* div elements for scores */
+#stars,
+#moves,
+#timer,
+#restart {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 40px;
+  font-size: 18px;
+  color: #000;
 }
 
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
+/* elements li for star rating */
+.star1,
+.star2,
+.star3 {
+  color: #38eee1;
+  font-size: 25px;
+  font-weight: bold;
+  position: relative;
+  top: 5px;
+  color: #430774;
+  margin-right: 3px;
 }
 
-.score-panel .restart {
-    float: right;
-    cursor: pointer;
+/* div for restart button */
+#restart {
+  font-size: 1.4em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* restart button */
+.restart-span {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 2px black;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.restart-span:hover {
+  background-color: #38eee1;
+}
+
+/* Cards */
+.card1,
+.card2,
+.card3,
+.card4,
+.card5,
+.card6,
+.card7,
+.card8 {
+  height: 100%;
+  width: 100%;
+  font-size: 0;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+}
+
+/* card images */
+.card1 {
+  background: transparent url(../img/1.png) center center no-repeat;
+}
+
+.card2 {
+  background: transparent url(../img/2.png) center center no-repeat;
+}
+
+.card3 {
+  background: transparent url(../img/3.png) center center no-repeat;
+}
+
+.card4 {
+  background: transparent url(../img/4.png) center center no-repeat;
+}
+
+.card5 {
+  background: transparent url(../img/5.png) center center no-repeat;
+}
+
+.card6 {
+  background: transparent url(../img/6.png) center center no-repeat;
+}
+
+.card7 {
+  background: transparent url(../img/7.png) center center no-repeat;
+}
+
+.card8 {
+  background: transparent url(../img/8.png) center center no-repeat;
+}
+
+/* popup window */
+#modal {
+  visibility: hidden;
+  width: 560px;
+  min-height: 260px;
+  background: linear-gradient(140deg, #17f266 10%, #09afbc 85%);
+  color: #000;
+  margin: 320px auto 0 auto;
+  position: fixed;
+  z-index: 10;
+  text-align: center;
+  padding: 40px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  border-radius: 10px;
+}
+
+#modal p {
+  font-size: 1.2em;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+/* header of scores */
+.score {
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 1.2em;
+}
+
+.modal-title {
+  font-size: 1.5em;
+}
+
+/* button to start next game */
+#next-game {
+  padding: 7px 12px;
+  background-color: #e1f366;
+  border: none;
+  color: #0b626c;
+  font-size: 1.1em;
+  border-radius: 6px;
+}
+
+#next-game:hover {
+  cursor: pointer;
+  background-color: #117abd;
+  color: #fff;
+}
+
+/* responsive */
+@media only screen and (max-width: 1050px) and (orientation: landscape) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .info {
+    font-size: 1.5em;
+  }
+
+  .score-panel {
+    font-size: 1.2em;
+  }
+
+  header {
+    position: relative;
+    top: 100px;
+    left: 250px;
+  }
+
+  .deck {
+    position: relative;
+    width: 430px;
+    min-height: 430px;
+    left: -200px;
+    top: -140px;
+  }
+
+  .card {
+    height: 80px;
+    width: 80px;
+  }
+
+  .card1 {
+    background: transparent url(../img/mobile/1.png) center center no-repeat;
+  }
+
+  .card2 {
+    background: transparent url(../img/mobile/2.png) center center no-repeat;
+  }
+
+  .card3 {
+    background: transparent url(../img/mobile/3.png) center center no-repeat;
+  }
+
+  .card4 {
+    background: transparent url(../img/mobile/4.png) center center no-repeat;
+  }
+
+  .card5 {
+    background: transparent url(../img/mobile/5.png) center center no-repeat;
+  }
+
+  .card6 {
+    background: transparent url(../img/mobile/6.png) center center no-repeat;
+  }
+
+  .card7 {
+    background: transparent url(../img/mobile/7.png) center center no-repeat;
+  }
+
+  .card8 {
+    background: transparent url(../img/mobile/8.png) center center no-repeat;
+  }
+
+  #modal {
+    margin-top: 140px;
+  }
 }
